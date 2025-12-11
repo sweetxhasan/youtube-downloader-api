@@ -8,13 +8,11 @@ export default function Header({ sidebarOpen, setSidebarOpen, darkMode, toggleTh
       <header className="sticky top-0 z-50 border-b-1 border-solid bg-white dark:bg-gray-900">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
-            {/* Logo */}
             <div className="flex items-center space-x-2">
               <RiYoutubeFill className="text-red-600 text-2xl" />
               <h1 className="text-xl font-bold">YT SAVE</h1>
             </div>
             
-            {/* Desktop Navigation */}
             <nav className="hidden md:flex items-center space-x-6">
               <button
                 onClick={() => window.location.href = '#api-examples'}
@@ -49,7 +47,6 @@ export default function Header({ sidebarOpen, setSidebarOpen, darkMode, toggleTh
               </button>
             </nav>
             
-            {/* Mobile Menu Button */}
             <div className="flex items-center space-x-4 md:hidden">
               <button
                 onClick={toggleTheme}
@@ -68,7 +65,6 @@ export default function Header({ sidebarOpen, setSidebarOpen, darkMode, toggleTh
         </div>
       </header>
       
-      {/* Mobile Sidebar */}
       {sidebarOpen && (
         <div className="fixed inset-0 z-40 md:hidden">
           <div 
@@ -79,46 +75,26 @@ export default function Header({ sidebarOpen, setSidebarOpen, darkMode, toggleTh
             <div className="p-4">
               <div className="flex justify-between items-center mb-8">
                 <h2 className="text-lg font-bold">Menu</h2>
-                <button
-                  onClick={() => setSidebarOpen(false)}
-                  className="p-2"
-                >
+                <button onClick={() => setSidebarOpen(false)} className="p-2">
                   <RiCloseLine />
                 </button>
               </div>
               
               <nav className="space-y-4">
-                <button
-                  onClick={() => {
-                    window.location.href = '#api-examples'
-                    setSidebarOpen(false)
-                  }}
-                  className="block w-full text-left px-4 py-3 border-1 hover:bg-gray-100 dark:hover:bg-gray-800"
-                >
+                <button onClick={() => { window.location.href = '#api-examples'; setSidebarOpen(false); }}
+                  className="block w-full text-left px-4 py-3 border-1 hover:bg-gray-100 dark:hover:bg-gray-800">
                   API Examples
                 </button>
-                <button
-                  onClick={() => {
-                    window.location.href = '#response'
-                    setSidebarOpen(false)
-                  }}
-                  className="block w-full text-left px-4 py-3 border-1 hover:bg-gray-100 dark:hover:bg-gray-800"
-                >
+                <button onClick={() => { window.location.href = '#response'; setSidebarOpen(false); }}
+                  className="block w-full text-left px-4 py-3 border-1 hover:bg-gray-100 dark:hover:bg-gray-800">
                   Response Example
                 </button>
-                <button
-                  onClick={() => {
-                    window.location.href = '#features'
-                    setSidebarOpen(false)
-                  }}
-                  className="block w-full text-left px-4 py-3 border-1 hover:bg-gray-100 dark:hover:bg-gray-800"
-                >
+                <button onClick={() => { window.location.href = '#features'; setSidebarOpen(false); }}
+                  className="block w-full text-left px-4 py-3 border-1 hover:bg-gray-100 dark:hover:bg-gray-800">
                   Features
                 </button>
-                <button
-                  onClick={() => window.open('mailto:contact@example.com')}
-                  className="block w-full text-left px-4 py-3 border-1 bg-blue-600 text-white hover:bg-blue-700"
-                >
+                <button onClick={() => window.open('mailto:contact@example.com')}
+                  className="block w-full text-left px-4 py-3 border-1 bg-blue-600 text-white hover:bg-blue-700">
                   Contact Us
                 </button>
               </nav>
@@ -128,4 +104,4 @@ export default function Header({ sidebarOpen, setSidebarOpen, darkMode, toggleTh
       )}
     </>
   )
-      }
+}
