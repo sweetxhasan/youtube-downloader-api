@@ -1,19 +1,18 @@
 'use client'
 
 import { useState } from 'react'
-import { RiJavascriptFill, RiTerminalBoxFill, RiFileCodeFill, RiPythonFill, RiFileCopyLine } from '@remixicon/react'
+import { RiJavascriptFill, RiTerminalBoxFill, RiFileCodeFill, RiCodeSSlashLine, RiFileCopyLine } from '@remixicon/react'
 
 export default function CodeExample({ activeTab, setActiveTab }) {
   const tabs = [
     { id: 'javascript', label: 'JavaScript', icon: <RiJavascriptFill /> },
     { id: 'nodejs', label: 'Node.js', icon: <RiTerminalBoxFill /> },
     { id: 'php', label: 'PHP', icon: <RiFileCodeFill /> },
-    { id: 'python', label: 'Python', icon: <RiPythonFill /> }
+    { id: 'python', label: 'Python', icon: <RiCodeSSlashLine /> } // FIXED: Changed RiPythonFill to RiCodeSSlashLine
   ]
 
   const codeExamples = {
-    javascript: `// Using fetch API
-const videoUrl = 'https://youtu.be/0NnSsgO8nEc';
+    javascript: `const videoUrl = 'https://youtu.be/0NnSsgO8nEc';
 const apiUrl = \`https://your-domain.com/api/youtube/download?url=\${encodeURIComponent(videoUrl)}\`;
 
 fetch(apiUrl)
@@ -26,8 +25,7 @@ fetch(apiUrl)
   })
   .catch(error => console.error('Error:', error));`,
 
-    nodejs: `// Using Node.js with axios
-const axios = require('axios');
+    nodejs: `const axios = require('axios');
 const videoUrl = 'https://youtu.be/0NnSsgO8nEc';
 const apiUrl = \`https://your-domain.com/api/youtube/download?url=\${encodeURIComponent(videoUrl)}\`;
 
@@ -44,16 +42,13 @@ axios.get(apiUrl)
   .catch(error => console.error('Error:', error));`,
 
     php: `<?php
-// Using PHP cURL
 $videoUrl = 'https://youtu.be/0NnSsgO8nEc';
 $apiUrl = 'https://your-domain.com/api/youtube/download?url=' . urlencode($videoUrl);
 
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL, $apiUrl);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($ch, CURLOPT_HTTPHEADER, [
-    'Accept: application/json'
-]);
+curl_setopt($ch, CURLOPT_HTTPHEADER, ['Accept: application/json']);
 
 $response = curl_exec($ch);
 curl_close($ch);
@@ -68,9 +63,7 @@ if ($response) {
     }
 }
 ?>`,
-
-    python: `# Using Python requests
-import requests
+    python: `import requests
 import urllib.parse
 
 video_url = "https://youtu.be/0NnSsgO8nEc"
@@ -98,14 +91,11 @@ except requests.exceptions.RequestException as e:
           window.showToast('Code copied to clipboard!', 'success')
         }
       })
-      .catch(err => {
-        console.error('Failed to copy: ', err)
-      })
+      .catch(err => console.error('Failed to copy: ', err))
   }
 
   return (
     <div className="border-1">
-      {/* Tab Navigation */}
       <div className="flex overflow-x-auto border-b-1">
         {tabs.map(tab => (
           <button
@@ -123,34 +113,14 @@ except requests.exceptions.RequestException as e:
         ))}
       </div>
 
-      {/* Code Display */}
       <div className="relative">
-        <button
-          onClick={copyToClipboard}
-          className="absolute top-4 right-4 p-2 border-1 bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 z-10"
-          title="Copy code"
-        >
+        <button onClick={copyToClipboard} className="absolute top-4 right-4 p-2 border-1 bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 z-10">
           <RiFileCopyLine />
         </button>
         
         <pre className="p-6 overflow-x-auto text-sm bg-gray-900 text-gray-100 min-h-[300px]">
           <code>{codeExamples[activeTab]}</code>
         </pre>
-      </div>
-
-      {/* API Endpoint */}
-      <div className="p-4 border-t-1 bg-gray-50 dark:bg-gray-800">
-        <div className="flex items-center justify-between">
-          <div>
-            <span className="font-semibold">Endpoint:</span>
-            <code className="ml-2 text-blue-600 dark:text-blue-400">
-              GET /api/youtube/download
-            </code>
-          </div>
-          <div className="text-sm text-gray-600 dark:text-gray-400">
-            No authentication required for basic usage
-          </div>
-        </div>
       </div>
     </div>
   )
