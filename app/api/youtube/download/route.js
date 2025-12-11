@@ -30,7 +30,6 @@ export async function GET(request) {
       )
     }
 
-    // Validate YouTube URL
     const youtubeRegex = /^(https?:\/\/)?(www\.)?(youtube\.com|youtu\.be)\/.+$/
     if (!youtubeRegex.test(videoUrl)) {
       return NextResponse.json(
@@ -39,10 +38,8 @@ export async function GET(request) {
       )
     }
 
-    // Random user agent for proxy rotation
     const userAgent = USER_AGENTS[Math.floor(Math.random() * USER_AGENTS.length)]
     
-    // Call the real API with proxy headers
     const apiUrl = `https://api.vidfly.ai/api/media/youtube/download?url=${encodeURIComponent(videoUrl)}`
     
     const response = await fetch(apiUrl, {
@@ -61,7 +58,7 @@ export async function GET(request) {
         'Referer': 'https://your-domain.com/',
         'DNT': '1'
       },
-      signal: AbortSignal.timeout(30000) // 30 second timeout
+      signal: AbortSignal.timeout(30000)
     })
 
     if (!response.ok) {
@@ -70,7 +67,6 @@ export async function GET(request) {
 
     const data = await response.json()
     
-    // Transform response to match your format
     if (data.code === 0 && data.data) {
       const transformedData = {
         code: 0,
