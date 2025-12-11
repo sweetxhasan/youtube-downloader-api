@@ -1,0 +1,12 @@
+{
+  "functions": {
+    "app/api/youtube/download/route.js": {
+      "maxDuration": 30,
+      "memory": 1024
+    }
+  },
+  "regions": ["iad1"],
+  "buildCommand": "npm run build",
+  "installCommand": "npm install",
+  "framework": "nextjs"
+}
