@@ -22,11 +22,6 @@ body {
   border: 1px solid !important;
 }
 
-/* Border utilities */
-.border-1 {
-  border-width: 1px;
-}
-
 /* Scrollbar styling */
 ::-webkit-scrollbar {
   width: 8px;
